@@ -1,0 +1,33 @@
+<% 
+    actionHelper = (collection) => { 
+        let actions = [
+            { value: "", name: "Bulk Action" },
+            { value: "change-status/active", name: "Active" },
+            { value: "change-status/inactive", name: "InActive" },
+            { value: "change-ordering/", name: "Change Ordering" },
+            { value: "delete/", name: "Delete" },
+        ];
+        let xhtmlAction = '';
+        let linkAddNew  = systemConfig.prefixAdmin + '/' + collection + '/form' ;
+
+        actions.forEach((action)=> {
+            let link = systemConfig.prefixAdmin + '/' + collection + '/' + action.value;
+            xhtmlAction += `<option value="${link}">${action.name}</option>`;
+        });
+
+        return `<div class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                <div class="mb-1">
+                    <select id="bulk-action" name="action" class="form-control slbAction custom-select custom-select-sm mr-1" style="width: unset">
+                        ${xhtmlAction}
+                    </select> <button type="button" id="bulk-apply" class="btn btn-sm btn-info btnAction" value="btnAction" inline> Apply <span class="badge badge-pill badge-danger navbar-badge" style="display: none"></span></button>
+                </div>
+                <a href="${linkAddNew}" class="btn btn-sm btn-info btn-addNew"><i class="fas fa-plus"></i> Add New</a>
+            </div>`;
+    } 
+%>
+
+
+
+
+
+

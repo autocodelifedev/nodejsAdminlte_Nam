@@ -1,0 +1,18 @@
+<% 
+    nameHelper = (keyword, name) => {
+        
+        if (keyword === undefined){
+            name = name;
+        }
+        else if (keyword !='') {
+            <!-- name = name.replace(new RegExp(keyword, "i"), (keyword) => `<mark style="color: blue;">${keyword}</mark>`); -->
+            name = name.replace(new RegExp(keyword, "i"), (keyword) => `<span class="hightlight">${keyword}</span>`);
+        };
+        
+        return `${name}`;
+    }
+%>
+        
+
+
+

@@ -1,0 +1,80 @@
+<% include ./../../helpers/image %>
+<% include ./../../helpers/image-old %>
+<% 
+	const collection = "items";
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
+    const folderUpload 	= 'uploads/items/';
+    
+%>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <% include ./../../elements/errors %>
+        <div class="card card-info card-outline">
+            <form role="form" action="<%= linkPrefix %>save/" method="post" class="mb-0" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label text-sm-right required">Name</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" name="name" value="<%= item.name %>" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label text-sm-right required">Avatar</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="file" name="avatar" id="imgInp" >
+                            <img id="blah" src="#" alt="your image" />
+                        </div>
+                    </div>
+                    <% if(item.id !== undefined && item.id !== ''){ %>
+                        <div class="form-group row">
+                            <label></label>
+                            <%- imageHelper(folderUpload, item.image, item.name, 'img-avatar-form'); %>
+                        </div>
+                    <%}%>
+                    <!-- <div class="form-group row">
+                        <label></label>
+                        <%- imageHelperOld(folderUpload, item.image, item.name, 'img-avatar-form'); %>
+                    </div> -->
+
+                    <div class="form-group row">
+                        <label for="ordering" class="col-sm-2 col-form-label text-sm-right required">Ordering</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="number" id="form[ordering]" name="ordering" value="<%= item.ordering %>" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="form[status]" class="col-sm-2 col-form-label text-sm-right">Status</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <select name="status" class="custom-select custom-select-sm">
+                                <option value="novalue">Choose Status</option>
+									<option value="active" <%= (item.status == "active") ? 'selected="selected"' : '' %> >Active</option>
+									<option value="inactive" <%= (item.status == "inactive") ? 'selected="selected"' : '' %> >Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-sm-right">Content</label>
+                        <textarea class="form-control" name="content" rows="2"  id="content_ckeditor" >
+                            <%= item.content %>
+                        </textarea>
+                    </div>
+                    <input type="hidden" name="id" value="<%= item.id %>" class="form-control">
+                    <div class="card-footer">
+                        <div class="col-12 col-sm-8 offset-sm-2">
+                            <input name="image_old" value="<%= item.image %>" type="hidden"  />
+                            <button type="submit" class="btn btn-sm btn-success mr-1"> Submit </button>                                
+                            <a href="<%= linkPrefix %>/" class="btn btn-sm btn-danger mr-1"> Cancel</a>
+                        </div>
+                    </div>
+                
+                </div>
+                
+            </form>    
+            
+
+        </div>
+    </div>
+</section>
+<!-- /.content -->

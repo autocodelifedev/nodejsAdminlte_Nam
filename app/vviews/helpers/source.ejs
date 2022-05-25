@@ -1,0 +1,7 @@
+<% 
+    sourceByHelper = (user_name, time) => { 
+        let xhtmlResult = `<i class="far fa-user"></i> ${user_name} <br />
+                            <i class="far fa-clock"></i> ${moment(time).format(systemConfig.format_long_time)}`;
+        return xhtmlResult;
+    } 
+%>
