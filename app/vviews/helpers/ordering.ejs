@@ -1,7 +1,7 @@
 <% 
-    orderingHelper = (value) => {
+    orderingHelper = (value,linkPrefix = '', id ='') => {
 
         <!-- return `<input type="number" value = "javascript:changeordering('${value}')" class="text-center ordering">`; -->
-        return `<input type="number" value = '${value}' class="text-center ordering">`;
+        return `<input type="number" data-link="${linkPrefix}" data-id="${id}" value = '${value}' class="text-center ordering">`;
     }
 %>

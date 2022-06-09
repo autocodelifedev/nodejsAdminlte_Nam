@@ -3,6 +3,7 @@ var router = express.Router();
 const util = require('util');
 const fs = require('fs');
 
+
 const systemConfig = require(__path_configs + 'system');
 const notify = require(__path_configs + 'notify');
 const ItemsModel = require(__path_schemas + 'items');
@@ -27,7 +28,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 
 	let pagination = {
 		totalItems: 1,
-		totalItemsPerPage: 3,
+		totalItemsPerPage: 5,
 		currentPage: parseInt(ParamsHelpers.getParam(req.query, 'page', 1)),
 		pageRanges: 3
 	};
@@ -85,6 +86,30 @@ router.post('/change-status/:status', (req, res, next) => {
 		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCESS, result.n), false);
 		res.redirect(linkIndex);
 	});
+});
+
+// Change ordering
+router.get('/change-ordering/:id/:ordering', (req, res, next) => {
+	console.log( 123)
+	let id = ParamsHelpers.getParam(req.params, 'id', '');
+	console.log('value:', id)
+	let ordering = ParamsHelpers.getParam(req.params, 'ordering', 1);
+	console.log('value:', ordering)
+
+	let data = {
+		ordering: ordering,
+		modified: {
+			user_id: 0,
+			user_name: 0,
+			time: Date.now()
+		}
+	}
+
+	ItemsModel.updateOne({ _id: id }, data, (err, result) => {
+		//req.flash('success', notify.CHANGE_STATUS_SUCCESS, false);
+		// res.redirect(linkIndex);
+	});
+	res.send({ordering,id})
 });
 
 // Change ordering - Multi

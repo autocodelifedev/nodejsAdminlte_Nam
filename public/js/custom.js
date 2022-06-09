@@ -46,6 +46,7 @@ const changestatus = (link) => {
                 current.removeClass('btn-danger');
             }
             current.attr("href", hr); // Set herf value
+            $.notify("Change Status", "success");
 
             //$('.ajax-status').addClass(className);
             //$('.ajax-status').html('data-current-class', 'btn-success');
@@ -55,16 +56,20 @@ const changestatus = (link) => {
 
 }
 $('.ordering').change(function (e) { 
-    var ordering;
+    let ordering = $(this).val();
     ordering = $(this).val();
+    console.log('ordeing:', ordering)
+    let link = $(this).data("link")
+    console.log('link:', link)
+    let id = $(this).data("id")
+    console.log('id:',id )
     $.ajax({
-        type: "post",
-        val: ordering,
+        type: "get",
+        url: `${link}change-ordering/${id}/${ordering}`,
         dataType: "json",
         success: function (data) {
-            let { orderings , id } = data
-
-            console.log('orderings:',orderings )
+            console.log('value:', data)
+            $.notify("Change Ordering", "success");
 
         }
     });
@@ -73,12 +78,12 @@ $('.ordering').change(function (e) {
 
 $(document).ready(function () {
 
-    // imgInp.onchange = evt => {
-    //     const [file] = imgInp.files
-    //     if (file) {
-    //       blah.src = URL.createObjectURL(file)
-    //     }
-    //   }
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+          blah.src = URL.createObjectURL(file)
+        }
+      }
 
     CKEDITOR.replace('content_ckeditor')
     var ckbAll = $(".cbAll");//dom toi element co class ..

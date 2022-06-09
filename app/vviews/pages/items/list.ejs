@@ -94,7 +94,7 @@
                                     <td class="text-center"><%- imageHelper(folderUpload, item.image, item.name) %></td>
                                     <td class="text-center"><%- statusHelper(linkPrefix, item.status, item.id) %></td>
                                     <!-- <td class="text-center"><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td> -->
-                                    <td class="text-center"><%- orderingHelper(item.ordering) %></td>
+                                    <td class="text-center"><%- orderingHelper(item.ordering, linkPrefix, item.id) %></td>
                                     <td class="text-center"><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
                                     <td class="text-center"><%- sourceByHelper(item.modified.user_name, item.modified.time) %>	</td>
                                     <td class="text-center">

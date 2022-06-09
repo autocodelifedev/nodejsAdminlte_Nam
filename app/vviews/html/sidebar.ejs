@@ -32,6 +32,37 @@
                         <p>Items</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-active="items">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Manage User</p>
+                    </a>
+                    <ul class="" >
+                        <li>
+                            <a href="/<%= systemConfig.prefixAdmin %>/groups"><i class="fa fa-angle-double-right   fa-fw"></i> Group</a>
+                        </li>
+                        <li>
+                            <a href="/<%= systemConfig.prefixAdmin %>/users"><i class="fa fa-angle-double-right  fa-fw"></i>User</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="nav-link" data-active="items">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Manage Items</p>
+                    </a>
+                    <ul class="" aria-expanded="true" >
+                        <li>
+                            <a href="/<%= systemConfig.prefixAdmin %>/category"><i class="fa fa-angle-double-right fa-fw"></i> Category</a>
+                        </li>
+                        <li>
+                            <a href="/<%= systemConfig.prefixAdmin %>/article"><i class="fa fa-angle-double-right fa-fw"></i> Article</a>
+                        </li>
+                        <li>
+                            <a href="/<%= systemConfig.prefixAdmin %>/items"><i class="fa fa-angle-double-right fa-fw"></i>Items</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
