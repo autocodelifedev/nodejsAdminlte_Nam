@@ -22,9 +22,9 @@ module.exports = {
         req.checkBody('status', notify.ERROR_STATUS)
             .isNotEqual(options.status.value);
 
-        // GROUP_ACP
-        req.checkBody('group_acp', notify.ERROR_GROUPACP)
-            .notEmpty();
+        // // GROUP_ACP
+        // req.checkBody('group_acp', notify.ERROR_GROUPACP)
+        //     .notEmpty();
 
         // CONTENT
         req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max) )

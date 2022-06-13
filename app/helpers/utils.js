@@ -1,7 +1,9 @@
-const ItemsModel = require(__path_schemas +  'items');
 
 
-let createFilterStatus =  async (currentStatus) => {
+
+let createFilterStatus =  async (currentStatus,col) => {
+	const ItemsModel = require(__path_schemas +  col);
+	
     let statusFilter = [
 		{name: 'All', value: 'all', count: 0, class: 'default'},
 		{name: 'Active', value: 'active',  count: 0, class: 'default'},

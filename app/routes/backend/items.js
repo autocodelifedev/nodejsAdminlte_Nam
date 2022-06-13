@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const util = require('util');
 const fs = require('fs');
+const col = "items"
 
 
 const systemConfig = require(__path_configs + 'system');
@@ -24,7 +25,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	let objWhere = {};
 	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter = await UtilsHelpers.createFilterStatus(currentStatus);
+	let statusFilter = await UtilsHelpers.createFilterStatus(currentStatus,col);
 
 	let pagination = {
 		totalItems: 1,
