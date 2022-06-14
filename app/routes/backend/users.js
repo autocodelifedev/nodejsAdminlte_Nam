@@ -215,10 +215,11 @@ router.post('/save', async (req, res, next) => {
 					status: item.status,
 					content: item.content,
 					modified: {
-						group_id: 0,
-						group_name: 0,
+						user_id: 0,
+						user_name: 0,
 						time: Date.now(),
 					}
+
 				}, (err, result) => {
 					req.flash('success', notify.EDIT_SUCCESS, false);
 					res.redirect(linkIndex);
@@ -234,10 +235,16 @@ router.post('/save', async (req, res, next) => {
 				res.render(`${folderView}form`, { pageTitle, item, errors, groupsItems});
 			} else {
 				item.created = {
-					group_id : 0,
-					group_name : "admin",
+					user_id : 0,
+					user_name : "admin",
 					time: Date.now()
 				}
+				item.group ={
+					id: item.group_id,
+					name: item.group_name
+				}
+				console.log('value:', item)
+
 				new ItemsModel(item).save().then(() => {
 					req.flash('success', notify.ADD_SUCCESS, false);
 					res.redirect(linkIndex);
